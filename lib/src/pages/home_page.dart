@@ -1,9 +1,19 @@
-
-
 import 'package:flutter/material.dart';
 
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
+  int counter = 0;
+
+  void incrementar() {
+    setState(() {
+      counter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,9 +21,9 @@ class HomePage extends StatelessWidget {
         title: Text("My App"),
         centerTitle: true,
       ),
-      body: _BodyHomePage(),
+      body: _BodyHomePage(counter: counter),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => print("A"),
+        onPressed: incrementar,
         child: Icon(Icons.add),
       ),
     );
@@ -21,9 +31,9 @@ class HomePage extends StatelessWidget {
 }
 
 class _BodyHomePage extends StatelessWidget {
-  const _BodyHomePage({
-    Key? key,
-  }) : super(key: key);
+  final int counter;
+
+  _BodyHomePage({required this.counter});
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +43,14 @@ class _BodyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Hola Mundo"),
-            Text("Hola Mundo"),
+            Text(
+              "Hola Mundo",
+              style: TextStyle(fontSize: 32),
+            ),
+            Text(
+              "$counter",
+              style: TextStyle(fontSize: 32),
+            ),
           ],
         ),
       ),
